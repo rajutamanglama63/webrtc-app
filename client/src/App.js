@@ -1,7 +1,16 @@
+import Notifications from "./components/notifications/Notifications";
+import Options from "./components/options/Options";
+import VideoPlayer from "./components/videoPlayer/VideoPlayer";
+import "./app.css";
+
 function App() {
   return (
-    <div className="App">
-      <h1>Video chat app</h1>
+    <div className="app">
+      <div className="app-bar">Video chat app</div>
+      <VideoPlayer />
+      <Options>
+        <Notifications />
+      </Options>
     </div>
   );
 }
