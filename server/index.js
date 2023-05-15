@@ -23,7 +23,6 @@ app.get("/", (req, res) => {
 });
 
 io.on("connection", (socket) => {
-  console.log(socket.id);
   socket.emit("me", socket.id);
 
   socket.on("disconnect", () => {

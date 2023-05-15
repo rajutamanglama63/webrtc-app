@@ -14,19 +14,31 @@ export const ContextProvider = ({ children }) => {
   const [callEnded, setCallEnded] = useState(false);
   const [name, setName] = useState("");
 
-  const myVideo = useRef();
-  console.log("video from ref: ", myVideo);
+  const myVideoRef = useRef();
   const userVideo = useRef();
   const connectionRef = useRef();
 
   useEffect(() => {
-    navigator.mediaDevices
-      .getUserMedia({ video: true, audio: true })
-      .then((currentStream) => {
-        console.log("curr stream: ", currentStream);
+    // navigator.mediaDevices
+    //   .getUserMedia({ video: true, audio: true })
+    //   .then((currentStream) => {
+    //     setStream(currentStream);
+    //     myVideo.current.srcObject = currentStream;
+    //   });
+
+    const getUserMedia = async () => {
+      try {
+        const currentStream = await navigator.mediaDevices.getUserMedia({
+          video: true,
+          audio: true,
+        });
         setStream(currentStream);
-        myVideo.current = currentStream;
-      });
+        myVideoRef.current.srcObject = currentStream;
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    getUserMedia();
 
     socket.on("me", (id) => setMe(id));
 
@@ -45,7 +57,7 @@ export const ContextProvider = ({ children }) => {
     });
 
     peer.on("stream", (currentStream) => {
-      userVideo.current = currentStream;
+      userVideo.current.srcObject = currentStream;
     });
 
     peer.signal(call.signal);
@@ -91,7 +103,7 @@ export const ContextProvider = ({ children }) => {
       value={{
         call,
         callAccepted,
-        myVideo,
+        myVideoRef,
         userVideo,
         stream,
         name,
