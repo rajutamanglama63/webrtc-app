@@ -1,0 +1,25 @@
+.video-container {
+    border: 2px dotted yellowgreen;
+    margin: 0 auto;
+    width: 50%;
+}
+
+.stream-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.stream-box {
+    height: 25rem;
+    width: 25rem;
+    border: 1px solid blue;
+    border-radius: 5px;
+    background-color: black;
+}
+
+.username {
+    padding: 5px 0 0 5px;
+    color: darkviolet;
+    font-family: monospace;
+}

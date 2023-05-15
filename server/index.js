@@ -1,8 +1,8 @@
 const express = require("express");
 const cors = require("cors");
-const dotenv = require("dotenv")
+const dotenv = require("dotenv");
 
-dotenv.config()
+dotenv.config();
 
 const app = express();
 const server = require("http").createServer(app);
@@ -23,6 +23,7 @@ app.get("/", (req, res) => {
 });
 
 io.on("connection", (socket) => {
+  console.log(socket.id);
   socket.emit("me", socket.id);
 
   socket.on("disconnect", () => {
