@@ -16,7 +16,7 @@ const Options = ({ children }) => {
   const { me, callAccepted, name, setName, callEnded, leaveCall, callUser } =
     useContext(SocketContext);
   const [idToCall, setIdToCall] = useState("");
-
+  console.log("idtocall: ", idToCall);
   const theme = useTheme();
 
   return (
@@ -44,7 +44,7 @@ const Options = ({ children }) => {
               },
             }}
           >
-            <Grid xs={12} md={6} sx={{ padding: "20px" }}>
+            <Grid item xs={12} md={6} sx={{ padding: "20px" }}>
               <Typography gutterBottom variant="h6">
                 Account Info
               </Typography>

@@ -44,17 +44,21 @@ import { SocketContext } from "../../context/SocketContext";
 
 import React, { useContext } from "react";
 import { Grid, Typography, Paper } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
 
 const VideoPlayer = () => {
   const { name, callAccepted, myVideoRef, userVideo, callEnded, stream, call } =
     useContext(SocketContext);
 
-  console.log("my-vid: ", myVideoRef);
+  const theme = useTheme();
   return (
     <Grid
       container
       sx={{
         justifyContent: "center",
+        [theme.breakpoints.down("xs")]: {
+          flexDirection: "column",
+        },
       }}
     >
       {stream && (
@@ -91,7 +95,12 @@ const VideoPlayer = () => {
               playsInline
               ref={userVideo}
               autoPlay={true}
-              style={{ width: "550px" }}
+              style={{
+                width: "550px",
+                [theme.breakpoints.down("xs")]: {
+                  width: "300px",
+                },
+              }}
             />
           </Grid>
         </Paper>
